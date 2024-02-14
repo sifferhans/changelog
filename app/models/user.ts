@@ -1,10 +1,10 @@
+import Changelog from '#models/changelog'
 import { withAuthFinder } from '@adonisjs/auth'
 import { compose } from '@adonisjs/core/helpers'
 import hash from '@adonisjs/core/services/hash'
 import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
-import { DateTime } from 'luxon'
-import Changelog from '#models/changelog'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import { DateTime } from 'luxon'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
