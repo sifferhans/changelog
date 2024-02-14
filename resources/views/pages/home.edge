@@ -4,5 +4,6 @@
 <a href="{{ route('dashboard') }}">Go to dashboard</a>
 @else
 @!linkButton({ href: route('auth.signup'), label: 'Sign up' })
+@!linkButton({ href: route('auth.login'), label: 'Log in', variant: 'secondary' })
 @end
 @end

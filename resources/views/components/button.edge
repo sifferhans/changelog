@@ -1,4 +1,4 @@
 <button type="{{ type || 'button' }}"
-	class="rounded-lg !bg-gray-800 !text-gray-50 px-4 py-2 min-w-[100px] inline-flex justify-center items-center">
+	class="rounded-lg px-4 py-2 min-w-[100px] inline-flex justify-center items-center {{ variant === 'secondary' ? '!bg-transparent !text-gray-800 !hover:bg-gray-100' : '!bg-gray-800 !text-gray-50 !hover:bg-gray-900' }}">
 	{{ label }}
 </button>
