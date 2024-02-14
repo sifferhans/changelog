@@ -1,0 +1,11 @@
+@component('layouts/auth')
+<form action="" class="max-w-xl w-full flex flex-col gap-4">
+	<h1 class="text-3xl">Sign up</h1>
+	@!inputField({ label: 'Name', id: 'name' })
+	@!inputField({ label: 'E-mail', id: 'email', type: 'email' })
+	@!inputField({ label: 'Password', id: 'password', type: 'password' })
+	@!button({ label: 'Sign up', type: 'submit' })
+	<p class="mt-4 self-center">Already have an account? <a href="{{ route('auth.login') }}" class="underline">Log in</a>
+	</p>
+</form>
+@end

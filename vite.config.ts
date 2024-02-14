@@ -1,10 +1,8 @@
 import { defineConfig } from 'vite'
 import adonisjs from '@adonisjs/vite/client'
-import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   plugins: [
-    UnoCSS(),
     adonisjs({
       /**
        * Entrypoints of your application. Each entrypoint will

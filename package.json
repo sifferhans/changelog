@@ -47,7 +47,6 @@
     "prettier": "^3.2.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "unocss": "^0.58.5",
     "vite": "^5.0.12"
   },
   "dependencies": {
@@ -58,7 +57,6 @@
     "@adonisjs/shield": "^8.1.0",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^2.0.2",
-    "@unocss/reset": "^0.58.5",
     "@vinejs/vine": "^1.7.1",
     "better-sqlite3": "^9.4.1",
     "edge.js": "^6.0.1",

@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> AdonisJS - A fully featured web framework for Node.js </title>
-
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body>
-  <h1 class="text-red-500"> It Works! </h1>
-</body>
-</html>
+@component('layouts/guest', {})
+<h1 class="text-4xl">Welcome to Changelog</h1>
+@if(auth.isAuthenticated)
+<a href="{{ route('dashboard') }}">Go to dashboard</a>
+@else
+@!linkButton({ href: route('auth.signup'), label: 'Sign up' })
+@end
+@end
