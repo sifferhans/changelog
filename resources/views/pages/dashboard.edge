@@ -1,3 +1,22 @@
 @component('layouts/app')
+
 <h1 class="text-2xl mb-8">Dashboard</h1>
+
+<section>
+	<div class="flex justify-between mb-4">
+		<h2 class="text-xl">Changelogs</h2>
+		@!linkButton({ href: route('changelog.create.show'), label: 'New changelog' })
+	</div>
+
+	@if(changelogs.length)
+	<ul class="flex flex-col gap-2">
+		@each(changelog in changelogs)
+		<li>
+			@!component('components/changelog/card', { changelog })
+		</li>
+		@end
+	</ul>
+	@end
+</section>
+
 @end

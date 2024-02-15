@@ -1,0 +1,15 @@
+@component('layouts/app')
+<h1 class="text-2xl mb-8">Create changelog</h1>
+
+<form action="{{ route('changelog.create') }}" method="post" class="flex flex-col gap-6 max-w-xl">
+	{{ csrfField() }}
+
+	@!inputField({ label: 'Version', name: 'version', required: true })
+
+	@!inputField({ label: 'Title', name: 'title', required: true })
+
+	@!textArea({ label: 'Body', name: 'body', rows: 10 })
+
+	@!button({ label: 'Create changelog', type: 'submit' })
+</form>
+@end

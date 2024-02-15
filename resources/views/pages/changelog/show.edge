@@ -1,0 +1,9 @@
+@component('layouts/app')
+<h1 class="text-2xl mb-8">{{ changelog.title }}</h1>
+<p>{{ changelog.version }}</p>
+
+<form action="{{ route('changelog.delete', { id: changelog.id }) }}?_method=DELETE" method="post">
+	{{ csrfField() }}
+	<button type="submit" class="hover:underline text-red-500">Delete</button>
+</form>
+@end

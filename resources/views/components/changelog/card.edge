@@ -1,0 +1,5 @@
+<article class="gap-4 grid grid-cols-[auto_1fr_auto] border py-2 px-4 rounded-lg">
+	<span class="text-gray-500">{{ changelog.version }}</span>
+	<h3>{{ changelog.title }}</h3>
+	<a href="{{ route('changelog.show', { id: changelog.id }) }}" class="hover:underline text-blue-600">Edit</a>
+</article>

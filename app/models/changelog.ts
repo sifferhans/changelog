@@ -14,6 +14,15 @@ export default class Changelog extends BaseModel {
   declare updatedAt: DateTime
 
   @column()
+  declare title: string
+
+  @column()
+  declare version: string
+
+  @column()
+  declare body?: string
+
+  @column()
   declare userId: number
 
   @belongsTo(() => User)

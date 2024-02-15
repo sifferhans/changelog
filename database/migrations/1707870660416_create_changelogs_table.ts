@@ -10,6 +10,10 @@ export default class extends BaseSchema {
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at')
 
+      table.text('title').notNullable()
+      table.text('version').notNullable()
+      table.text('body').nullable()
+
       table.integer('user_id').unsigned().references('id').inTable('users')
     })
   }
