@@ -8,11 +8,8 @@
 */
 
 const AuthController = () => import('#controllers/auth_controller')
-import User from '#models/user'
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
-
-const users = User.all()
 
 // Marketing
 router.on('/').render('pages/home').as('home')
@@ -36,9 +33,11 @@ router
 // App
 router
   .group(() => {
-    router.on('/dashboard').render('pages/dashboard', { users }).as('dashboard')
+    router.on('/dashboard').render('pages/dashboard').as('dashboard')
 
-    router.on('/user/settings').render('pages/user/settings').as('user.settings')
-    router.on('/user/profile').render('pages/user/profile').as('user.profile')
+    router.on('/settings').render('pages/user/settings').as('user.settings')
+    router.on('/profile').render('pages/user/profile').as('user.profile')
+
+    router.post('/logout', [AuthController, 'logout']).as('auth.logout')
   })
   .middleware([middleware.auth()])

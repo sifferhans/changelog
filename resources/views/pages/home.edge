@@ -3,7 +3,7 @@
 @component('layouts/guest')
 <h1 class="text-4xl">Welcome to Changelog</h1>
 @if(auth.isAuthenticated)
-<a href="{{ route('dashboard') }}">Go to dashboard</a>
+@!linkButton({ href: route('dashboard'), label: 'Go to dashboard' })
 @else
 @!linkButton({ href: route('auth.signup'), label: 'Sign up' })
 @!linkButton({ href: route('auth.login'), label: 'Log in', variant: 'secondary' })

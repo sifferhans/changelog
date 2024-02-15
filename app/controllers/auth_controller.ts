@@ -1,10 +1,24 @@
 import User from '#models/user'
+import { errors } from '@adonisjs/auth'
 import type { HttpContext } from '@adonisjs/core/http'
+import logger from '@adonisjs/core/services/logger'
 import vine from '@vinejs/vine'
 
 export default class AuthController {
   async signupShow({ view }: HttpContext) {
     return view.render('pages/auth/signup')
+  }
+
+  async loginShow({ view }: HttpContext) {
+    return view.render('pages/auth/login')
+  }
+
+  async forgotPasswordShow({ view }: HttpContext) {
+    return view.render('pages/auth/forgot-password')
+  }
+
+  async resetPasswordShow({ view }: HttpContext) {
+    return view.render('pages/auth/reset-password')
   }
 
   async signup({ request, response, auth, session }: HttpContext) {
@@ -22,11 +36,10 @@ export default class AuthController {
     try {
       const user = await User.create(data)
       await auth.use('web').login(user)
-
-      response.redirect().toRoute('dashboard')
+      return response.redirect().toRoute('dashboard')
     } catch {
       session.flash('error', 'Email is already in use')
-      response.redirect().back()
+      return response.redirect().back()
     }
   }
 
@@ -36,23 +49,18 @@ export default class AuthController {
     try {
       const user = await User.verifyCredentials(email, password)
       await auth.use('web').login(user)
+      return response.redirect().toRoute('dashboard')
+    } catch (error) {
+      if (error instanceof errors.E_INVALID_CREDENTIALS) {
+        session.flash('error', error.message)
+      }
 
-      response.redirect('/dashboard')
-    } catch {
-      session.flash('error', 'Invalid credentials')
-      response.redirect().back()
+      return response.redirect().back()
     }
   }
 
-  async loginShow({ view }: HttpContext) {
-    return view.render('pages/auth/login')
-  }
-
-  async forgotPasswordShow({ view }: HttpContext) {
-    return view.render('pages/auth/forgot-password')
-  }
-
-  async resetPasswordShow({ view }: HttpContext) {
-    return view.render('pages/auth/reset-password')
+  async logout({ response, auth }: HttpContext) {
+    await auth.use('web').logout()
+    return response.redirect().toRoute('auth.login.show')
   }
 }
