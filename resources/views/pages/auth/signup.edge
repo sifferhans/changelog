@@ -1,10 +1,20 @@
 @component('layouts/auth')
 <form action="{{ route('auth.signup') }}" method="post" class="max-w-xl w-full flex flex-col gap-4">
 	<h1 class="text-3xl">Sign up</h1>
-	@!inputField({ label: 'Name', name: 'name' })
-	@!inputField({ label: 'E-mail', name: 'email', type: 'email' })
-	@!inputField({ label: 'Password', name: 'password', type: 'password' })
+
+	@flashMessage('error')
+	<div role="alert" class="rounded-lg p-4 bg-red-50 text-red-500">{{ $message }}</div>
+	@end
+
+	{{ csrfField() }}
+	@!inputField({ label: 'Name', name: 'fullName', required: true })
+
+	@!inputField({ label: 'E-mail', name: 'email', type: 'email', required: true })
+
+	@!inputField({ label: 'Password', name: 'password', type: 'password', required: true })
+
 	@!button({ label: 'Sign up', type: 'submit' })
+
 	<p class="mt-4 self-center">Already have an account? <a href="{{ route('auth.login') }}" class="underline">Log in</a>
 	</p>
 </form>

@@ -1,3 +1,11 @@
 @component('layouts/app', { })
 <h1>Dashboard</h1>
+{{ auth.isAuthenticated }}
+<ul>
+	@each(user in users)
+	<li>
+		<pre>{{ user }}</pre>
+	</li>
+	@end
+</ul>
 @end

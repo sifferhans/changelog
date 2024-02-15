@@ -1,4 +1,6 @@
-@component('layouts/guest', {})
+@eval(await auth.check())
+
+@component('layouts/guest')
 <h1 class="text-4xl">Welcome to Changelog</h1>
 @if(auth.isAuthenticated)
 <a href="{{ route('dashboard') }}">Go to dashboard</a>
