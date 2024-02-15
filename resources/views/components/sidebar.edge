@@ -1,14 +1,20 @@
 <div class="p-8 min-w-[250px]">
-	<nav>
-		<ul>
+	<nav class="h-full">
+		<ul class="h-full flex flex-col">
 			<li>
 				<a href="{{ route('dashboard') }}" class="hover:underline">Dashboard</a>
 			</li>
-			<li>
+			<li class="mt-auto">
 				<a href="{{ route('user.profile') }}" class="hover:underline">Profile</a>
 			</li>
 			<li>
 				<a href="{{ route('user.settings') }}" class="hover:underline">Settings</a>
+			</li>
+			<li>
+				<form action="{{ route('auth.logout') }}" method="post">
+					{{ csrfField() }}
+					<button type="submit" class="hover:underline text-red-500">Log out</button>
+				</form>
 			</li>
 		</ul>
 	</nav>

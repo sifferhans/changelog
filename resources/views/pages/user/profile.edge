@@ -2,10 +2,4 @@
 <h1 class="text-2xl mb-8">Profile</h1>
 <p>{{ auth.user.fullName }}</p>
 <p>{{ auth.user.email }}</p>
-
-<form action="{{ route('auth.logout') }}" method="post">
-	{{ csrfField() }}
-	<button type="submit" class="hover:underline text-red-500">Log out</button>
-</form>
-
 @end
