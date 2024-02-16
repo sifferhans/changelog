@@ -8,11 +8,10 @@
 */
 
 const AuthController = () => import('#controllers/auth_controller')
-import router from '@adonisjs/core/services/router'
-import { middleware } from '#start/kernel'
-import ChangelogsController from '#controllers/changelogs_controller'
+const ChangelogsController = () => import('#controllers/changelogs_controller')
 import Changelog from '#models/changelog'
-import User from '#models/user'
+import { middleware } from '#start/kernel'
+import router from '@adonisjs/core/services/router'
 
 // Marketing
 router.on('/').render('pages/home').as('home')

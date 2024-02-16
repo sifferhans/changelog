@@ -14,11 +14,11 @@
 			class=" border px-4 py-2.5 rounded-lg min-w-0" />
 	</label>
 
-	@if(_errors && _errors.length)
+	@inputError(name)
 	<ul>
-		@each(error in _errors)
-		<li>{{ error }}</li>
+		@each(message in messages)
+		<li>{{ message }}</li>
 		@endeach
 	</ul>
-	@endif
+	@end
 </div>

@@ -1,4 +1,4 @@
 <div class="bg-gray-50 rounded-xl p-4">
-	<span class="opacity-50">{{ label }}</span>
-	<p class="text-3xl font-bold">{{ value }}</p>
+	<span class="opacity-50" id="{{ `${label}-${value}`.toLowerCase() }}">{{ label }}</span>
+	<p class="text-3xl font-bold" aria-labelledby="{{ `${label}-${value}`.toLowerCase() }}">{{ value }}</p>
 </div>
