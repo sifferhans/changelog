@@ -13,6 +13,9 @@ export default class Changelog extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
+  @column.dateTime()
+  declare publishedAt: DateTime
+
   @column()
   declare title: string
 

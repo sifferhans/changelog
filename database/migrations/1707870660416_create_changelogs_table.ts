@@ -9,6 +9,7 @@ export default class extends BaseSchema {
 
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at')
+      table.timestamp('published_at')
 
       table.text('title').notNullable()
       table.text('version').notNullable()

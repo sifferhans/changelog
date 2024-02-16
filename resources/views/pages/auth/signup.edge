@@ -1,6 +1,6 @@
 @component('layouts/auth')
 
-@forms.post({ action: route('auth.signup') })
+@forms.post({ action: route('auth.signup'), class: 'max-w-xl w-full flex flex-col gap-4' })
 
 <h1 class="text-3xl">Sign up</h1>
 

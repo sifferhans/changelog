@@ -12,6 +12,7 @@ import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 import ChangelogsController from '#controllers/changelogs_controller'
 import Changelog from '#models/changelog'
+import User from '#models/user'
 
 // Marketing
 router.on('/').render('pages/home').as('home')
@@ -38,7 +39,10 @@ router
     router
       .get('/dashboard', async ({ view }) => {
         const changelogs = await Changelog.all()
-        return view.render('pages/dashboard', { changelogs })
+        const unpublished = changelogs.filter((c) => !c.publishedAt)
+        const published = changelogs.filter((c) => c.publishedAt)
+
+        return view.render('pages/dashboard', { changelogs, published, unpublished })
       })
       .as('dashboard')
 
