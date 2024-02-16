@@ -9,9 +9,9 @@
 	</div>
 
 	@if(changelogs.length)
-	<ul class="flex flex-col gap-2">
+	<ul class="grid grid-cols-[auto_1fr_auto] gap-2" role="list">
 		@each(changelog in changelogs)
-		<li>
+		<li class="contents" role="listitem">
 			@!component('components/changelog/card', { changelog })
 		</li>
 		@end

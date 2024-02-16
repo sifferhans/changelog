@@ -45,19 +45,16 @@ router
     router.on('/settings').render('pages/user/settings').as('user.settings')
     router.on('/profile').render('pages/user/profile').as('user.profile')
 
+    // Changelog
     router
       .group(() => {
         router.get('/create', [ChangelogsController, 'createShow']).as('create.show')
         router.post('/create', [ChangelogsController, 'create']).as('create')
 
-        router
-          .get('/:id', async ({ view, params }) => {
-            return view.render('pages/changelog/show', {
-              changelog: await Changelog.findOrFail(params.id),
-            })
-          })
-          .as('show')
+        router.get('/:id', [ChangelogsController, 'show']).as('show')
         router.delete('/:id', [ChangelogsController, 'delete']).as('delete')
+        router.patch('/:id', [ChangelogsController, 'update']).as('update')
+        router.get('/:id/edit', [ChangelogsController, 'updateShow']).as('update.show')
       })
       .prefix('/changelogs')
       .as('changelog')
