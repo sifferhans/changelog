@@ -16,7 +16,7 @@ export default class ChangelogsController {
     return view.render('pages/changelog/update', { changelog })
   }
 
-  async create({ request, response, auth }: HttpContext) {
+  async create({ request, response, auth, session }: HttpContext) {
     const { title, body, version } = request.only(['title', 'version', 'body'])
 
     const changelog = await Changelog.create({
@@ -28,19 +28,23 @@ export default class ChangelogsController {
 
     await changelog.save()
 
+    session.flash('success', 'Changelog has been created')
+
     return response.redirect().toRoute('changelog.show', { id: changelog.id })
   }
 
-  async delete({ request, response }: HttpContext) {
+  async delete({ request, response, session }: HttpContext) {
     const { id } = request.params()
 
     const changelog = await Changelog.findOrFail(id)
     await changelog.delete()
 
+    session.flash('success', 'Changelog has been deleted')
+
     return response.redirect().toRoute('dashboard')
   }
 
-  async update({ request, response }: HttpContext) {
+  async update({ request, response, session }: HttpContext) {
     const { id } = request.params()
     const { title, body, version } = request.only(['title', 'body', 'version'])
 
@@ -51,6 +55,8 @@ export default class ChangelogsController {
     changelog.version = version
 
     await changelog.save()
+
+    session.flash('success', 'Changelog has been updated')
 
     return response.redirect().toRoute('changelog.show', { id: changelog.id })
   }

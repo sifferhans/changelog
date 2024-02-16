@@ -5,7 +5,9 @@
 <section>
 	<div class="flex justify-between mb-4">
 		<h2 class="text-xl">Changelogs</h2>
-		@!linkButton({ href: route('changelog.create.show'), label: 'New changelog' })
+		<a href="{{ route('changelog.create.show') }}">
+			@!button.primary({ label: 'New changelog' })
+		</a>
 	</div>
 
 	@if(changelogs.length)

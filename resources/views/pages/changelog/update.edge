@@ -1,25 +1,23 @@
 @component('layouts/app')
 
-<div class="mb-8">
-	<h1 class="text-2xl">{{ changelog.title }}</h1>
+<div class="flex flex-col gap-4 max-w-xl w-full">
+	<div class="mb-4">
+		<h1 class="text-2xl">Edit changelog</h1>
+	</div>
 
-	<form action="{{ route('changelog.delete', { id: changelog.id }) }}?_method=DELETE" method="post">
-		{{ csrfField() }}
-		<button type="submit" class="hover:underline text-red-500">Delete</button>
-	</form>
-</div>
+	@forms.patch({ action: route('changelog.update', { id: changelog.id }), class: 'flex flex-col gap-4'
+	})
 
-<form action="{{ route('changelog.update', { id: changelog.id }) }}?_method=PATCH" method="post"
-	class="flex flex-col gap-6 max-w-xl">
-	{{ csrfField() }}
-
-	@!inputField({ label: 'Version', name: 'version', required: true, value: changelog.version })
-
-	@!inputField({ label: 'Title', name: 'title', required: true, value: changelog.title })
-
+	@!inputs.text({ label: 'Version', name: 'version', required: true, value: changelog.version })
+	@!inputs.text({ label: 'Title', name: 'title', required: true, value: changelog.title })
 	@!textArea({ label: 'Body', name: 'body', rows: 10, value: changelog.body })
+	@!button.primary({ label: 'Save changes', type: 'submit' })
 
-	@!button({ label: 'Save changes', type: 'submit' })
-</form>
+	@end
+
+	@forms.delete({ action: route('changelog.delete', { id: changelog.id }) })
+	@!button.danger({ label: 'Delete', class: 'w-full', type: 'submit' })
+	@end
+</div>
 
 @end

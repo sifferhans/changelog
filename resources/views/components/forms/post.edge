@@ -1,0 +1,4 @@
+<form action="{{ action }}" method="post" {{ $props.toAttrs() }}>
+	{{ csrfField() }}
+	{{{ await $slots.main() }}}
+</form>

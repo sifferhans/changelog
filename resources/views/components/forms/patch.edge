@@ -1,0 +1,6 @@
+@let(_action = action.includes('?') ? `${action}&_method=PATCH` : `${action}?_method=PATCH`)
+
+<form action="{{ _action }}" method="post" {{ $props.toAttrs() }}>
+	{{ csrfField() }}
+	{{{ await $slots.main() }}}
+</form>

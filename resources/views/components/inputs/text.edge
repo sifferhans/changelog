@@ -1,0 +1,24 @@
+@let(_defaultValue = value ?? '')
+@let(_value = flashMessages.get(name) ?? _defaultValue)
+@let(_errors = flashMessages.get(`errors.${name}`) ?? errors)
+
+<div>
+	<label class="grid gap-1">
+		@if(label)
+		<span class="text-sm tracking-wide text-gray-800">
+			{{ label }}
+		</span>
+		@end
+
+		<input type="{{ type || 'text' }}" name="{{ name }}" value="{{ _value }}" required="{{ required }}"
+			class=" border px-4 py-2.5 rounded-lg min-w-0" />
+	</label>
+
+	@if(_errors && _errors.length)
+	<ul>
+		@each(error in _errors)
+		<li>{{ error }}</li>
+		@endeach
+	</ul>
+	@endif
+</div>

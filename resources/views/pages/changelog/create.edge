@@ -1,15 +1,13 @@
 @component('layouts/app')
 <h1 class="text-2xl mb-8">Create changelog</h1>
 
-<form action="{{ route('changelog.create') }}" method="post" class="flex flex-col gap-6 max-w-xl">
-	{{ csrfField() }}
+@forms.post({ action: route('changelog.create'), class: 'max-w-xl w-full flex flex-col gap-4' })
 
-	@!inputField({ label: 'Version', name: 'version', required: true })
+@!inputs.text({ label: 'Version', name: 'version', required: true })
+@!inputs.text({ label: 'Title', name: 'title', required: true })
+@!textArea({ label: 'Body', name: 'body', rows: 10 })
+@!button.primary({ label: 'Create changelog', type: 'submit' })
 
-	@!inputField({ label: 'Title', name: 'title', required: true })
+@end
 
-	@!textArea({ label: 'Body', name: 'body', rows: 10 })
-
-	@!button({ label: 'Create changelog', type: 'submit' })
-</form>
 @end

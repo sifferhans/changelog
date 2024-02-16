@@ -1,0 +1,21 @@
+@let(_value = flashMessages.get(name) ?? value ?? '')
+@let(_errors = flashMessages.get(`errors.${name}`) ?? errors)
+
+<label class="grid gap-1">
+	@if(label)
+	<span class="text-sm tracking-wide text-gray-800">
+		{{ label }}
+	</span>
+	@end
+
+	<textarea name="{{ name }}" rows="{{ rows || 5 }}" required="{{ required }}"
+		class=" border px-4 py-2.5 rounded-lg min-w-0">{{ _value }}</textarea>
+
+	@if(_errors && _errors.length)
+	<ul>
+		@each(error in _errors)
+		<li>{{ error }}</li>
+		@endeach
+	</ul>
+	@endif
+</label>

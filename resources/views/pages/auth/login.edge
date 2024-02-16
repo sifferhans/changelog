@@ -1,16 +1,22 @@
 @component('layouts/auth')
-<form action="{{ route('auth.login') }}" method="post" class="max-w-xl w-full flex flex-col gap-4">
-	<h1 class="text-3xl">Log in</h1>
 
-	@flashMessage('error')
-	<div role="alert" class="rounded-lg p-4 bg-red-50 text-red-500">{{ $message }}</div>
-	@end
+@forms.post({ action: route('auth.login'), class: 'max-w-xl w-full flex flex-col gap-4' })
 
-	{{ csrfField() }}
-	@!inputField({ label: 'E-mail', name: 'email', type: 'email' })
-	@!inputField({ label: 'Password', name: 'password', type: 'password' })
-	@!button({ label: 'Log in', type: 'submit' })
-	<p class="mt-4 self-center">Don't have an account? <a href="{{ route('auth.signup') }}" class="underline">Sign up</a>
-	</p>
-</form>
+<h1 class="text-2xl mb-6">Log in</h1>
+
+@flashMessage('error')
+<div role="alert" class="rounded-lg p-4 bg-red-50 text-red-500">{{ $message }}</div>
+@end
+
+@!inputs.text({ label: 'E-mail', name: 'email', type: 'email' })
+@!inputs.text({ label: 'Password', name: 'password', type: 'password' })
+@!button.primary({ label: 'Log in', type: 'submit' })
+
+<p class="mt-4 self-center">
+	Don't have an account?
+	<a href="{{ route('auth.signup') }}" class="underline">Sign up</a>
+</p>
+
+@end
+
 @end

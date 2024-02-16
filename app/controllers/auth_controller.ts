@@ -36,6 +36,9 @@ export default class AuthController {
     try {
       const user = await User.create(data)
       await auth.use('web').login(user)
+
+      session.flash('info', 'Welcome to Changelog!')
+
       return response.redirect().toRoute('dashboard')
     } catch {
       session.flash('error', 'Email is already in use')
@@ -49,6 +52,9 @@ export default class AuthController {
     try {
       const user = await User.verifyCredentials(email, password)
       await auth.use('web').login(user)
+
+      session.flash('info', 'Welcome back!')
+
       return response.redirect().toRoute('dashboard')
     } catch (error) {
       if (error instanceof errors.E_INVALID_CREDENTIALS) {
@@ -59,8 +65,11 @@ export default class AuthController {
     }
   }
 
-  async logout({ response, auth }: HttpContext) {
+  async logout({ response, auth, session }: HttpContext) {
     await auth.use('web').logout()
+
+    session.flash('success', 'You have logged out successfully')
+
     return response.redirect().toRoute('auth.login.show')
   }
 }
